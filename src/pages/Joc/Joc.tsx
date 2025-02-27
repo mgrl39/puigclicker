@@ -3,13 +3,13 @@ import { useState } from 'react';
 import './Joc.css'
 
 function Joc() {
-    const [monedas, setMonedas] = useState<number>(0);
+    const [monedes, setMonedes] = useState<number>(0);
 
     return (
         <div>
-            <h1>Monedas</h1>
-            <p>{monedas}</p>
-            <button onClick={() => {setMonedas(monedas + 1)}}></button>
+            <h1>Monedes</h1>
+            <p>{monedes}</p>
+            <button onClick={() => { setMonedes(monedes + 1) }}>Afegir monedes</button>
         </div>
     );
 }
