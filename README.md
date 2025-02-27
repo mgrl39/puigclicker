@@ -1,54 +1,28 @@
-# React + TypeScript + Vite
+# Exercici 4: Puig Clicker
+## Descripció:
+> [!NOTE]  
+> Objectiu: Aprofundir en els conceptes relacionats amb els events, components i React.
+> Desenvolupament: Individual.
+> Lliurament: No s’entrega.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Enunciat
 
-Currently, two official plugins are available:
+El concepte dels jocs clicker es va popularitzar el 2013 amb la sortida del joc Cookie Clicker, però el gènere havia nascut abans, amb jocs com Progress Quest (2002) o Cow Clicker (2010).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+La premissa és simple, a través de clics o alguna altra eina simple, aconseguim una moneda que podem gastar per aconseguir millores, les quals ens generen més monedes. En alguns llocs, el clic acaba sent irrellevant i només s’utilitza per comprar més millores.
 
-## Expanding the ESLint configuration
+L’objectiu és aconseguir muntar un clicker senzill, es pot fer de qualsevol temàtica, però ha de complir uns requisits mínims:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+- Dues pàgines, Inici i Joc
+- El progrés s’ha de guardar
+- Inici amb dos botons: 
+    - Un per anar al joc
+    - Un per esborrar les dades per començar de 0 (amb confirmació!)
+- Dos components a reutilitzar:
+    - Component Moneda: Hi haurà diverses monedes que generen diners, cada una quan es fa clic genera una quantitat diferent. Això significa que podem identificar mínim tres paràmetres: nom, valor i que fa en afegir.
+    - Component Millora: Hi haurà diverses millores. Cada millora es pagarà amb la moneda global i podem comprar-ho diversos cops. Això significa que podem identificar mínim quatre paràmetres: nom, cost, que fa en afegir i quantes vegades ho he comprat.
+- Joc:
+    - S’utilitzaren tantes vegades com vulguem els components anteriors.
+    - Recuperarem les dades guardades
+    - Guardarem les dades cada cop que canvien.
+    - Portarem control de les monedes i de les millores
