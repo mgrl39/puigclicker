@@ -2,7 +2,9 @@
 ## Descripció:
 > [!NOTE]  
 > Objectiu: Aprofundir en els conceptes relacionats amb els events, components i React.
+
 > Desenvolupament: Individual.
+
 > Lliurament: No s’entrega.
 
 ## Enunciat
