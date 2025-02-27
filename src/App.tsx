@@ -1,4 +1,15 @@
 import { useState } from 'react'
+/*
+import Router from 'react'
+import Route from 'react';
+import Switch from 'react';
+*/
+// import Routes from 'react';
+//import Switch from 'react';
+import { BrowserRouter, Routes } from 'react-router-dom';
+import { Route } from 'react-router-dom';
+import Inici from './components/Inici';
+import Joc from './components/Joc'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -28,6 +39,12 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/inici" element={<Inici />} />
+          <Route path="/joc" element={<Joc />} />
+        </Routes>
+      </BrowserRouter>
     </>
   )
 }
