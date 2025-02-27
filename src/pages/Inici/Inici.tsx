@@ -6,11 +6,12 @@ function Inici() {
             <h1>Puig Clicker</h1>
             <button onClick={() =>  {
                 // TODO Navegar
-                console.log("XD");
-            }}>Juego</button>
+                console.log("JOC");
+            }}>Joc</button>
+
             <button onClick={() =>  {
                 // TODO Reset LocalStorage
-                console.log("XD");
+                console.log("RESET");
             }}>Reset</button>
         </div>
     );
