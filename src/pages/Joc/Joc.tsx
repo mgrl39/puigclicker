@@ -10,6 +10,8 @@ import { useState } from 'react';
 import './Joc.css'
 import Moneda from '../../components/Moneda';
 import TipoMonedaModel from '../../models/TipoMonedaModel';
+import { Link } from 'react-router-dom';
+import Millora from '../../components/Millora';
 
 /* Aquesta és la funció del joc. Aixo vol dir que si es fa click en el boto, es cridara
  a la funció setMonedes i es sumara 1 a el valor de monedes */
@@ -20,21 +22,26 @@ function Joc() {
      * Aixo s'anomena useState, ja que a React fem us d'estats.
      */
     const [monedes, setMonedes] = useState<number>(0);
-    
+    // Lo hacemos en un estado porquelo queremos modificar y visualizar.
+    const [millores, setMillores] = useState({ puig1Mejora: 0 });
     /*
      * La potencia d'aixo es informacio de API. 
      */
     const tipusMoneda : TipoMonedaModel[] = [
-        { nom: "Puig1", valor: 1 },
-        { nom: "Puig2", valor: 2 },
-        { nom: "Puig3", valor: 3 },
-        { nom: "Puig4", valor: 4 },
-        { nom: "Puig5", valor: 5 },
-        { nom: "Puig6", valor: 6 },
-        { nom: "Iva", valor: -21 },
+        { nom: "Moneda", valor: 1 + millores.puig1Mejora},
+        { nom: "Duplicada", valor: 2 },
+        /*
+        { nom: "Millorada", valor: 3 },
+        { nom: "Cuatre Alhora", valor: 4 },
+        { nom: "Generadora", valor: 5 },
+        { nom: "Bonus Alt", valor: 6 },
+        { nom: "Humilde", valor: 0},
+        { nom: "Negativa", valor: -21 },
+        */
     ]
     /* Aquesta és la funció que renderitza el joc. */
     return (
+        // Aquesta es la estructura del joc.
         <div>
             <h1>Monedes</h1>
             <p>{monedes}</p>
@@ -45,6 +52,21 @@ function Joc() {
                     )} />
                 ))
             }
+            <h1>Millores</h1>
+            <Millora
+                nom="Increment Puig1"
+                cost={50}
+                millores={millores.puig1Mejora}
+                click={() => {
+                    if (monedes >= 50) {
+                        setMillores({puig1Mejora: millores.puig1Mejora + 1})
+                        setMonedes(monedes - 50);
+                    } else alert("No tens suficients credits!\nGuanya diners!!!");
+                }}
+            />
+            <Link to="/">
+                <button>Home</button>
+            </Link>
         </div>
     );
 }

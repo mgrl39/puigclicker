@@ -7,6 +7,7 @@ function Moneda({ nom, valor, click }: { nom: string, valor: number, click: () =
     return (
     // Mostramos el nombre y queremos mostrar mas info
     // Estamos mostrando CUANTO VALE DARLE. NO CUANTOS TENGO.
+    // La moneda en si no era nada
     <button onClick={click}>
         {nom} - Valor {valor}
     </button>
