@@ -5,7 +5,7 @@ por encima para ayudarnos a codificar, la unica logica que comparten son los hoo
 */
 
 /* useState es fara servir per a canviar el valor de les monedes */
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 // Es truca al css de la pàgina
 import './Joc.css'
 import Moneda from '../../components/Moneda';
@@ -16,17 +16,25 @@ import Millora from '../../components/Millora';
 /* Aquesta és la funció del joc. Aixo vol dir que si es fa click en el boto, es cridara
  a la funció setMonedes i es sumara 1 a el valor de monedes */
 function Joc() {
+    const monedesGuardades : number = Number(localStorage.getItem("monedes"));
+
     /*
      * Aquesta variable monedes on es guarda el valor de les monedes.
      * Mentre que setMonedes es la funcio que canvia el valor de monedes.
      * Aixo s'anomena useState, ja que a React fem us d'estats.
      */
-    const [monedes, setMonedes] = useState<number>(0);
+    const [monedes, setMonedes] = useState<number>(monedesGuardades ? monedesGuardades : 0);
     // Lo hacemos en un estado porquelo queremos modificar y visualizar.
     const [millores, setMillores] = useState({ puig1Mejora: 0 });
-    /*
-     * La potencia d'aixo es informacio de API. 
-     */
+
+    // El Localstorage no es algo que hayamos programado nosotros. Es un sistema
+    // externo que queremos utilliza,r por eso el useEfect
+    // solo va a cambiar cuando mis funciones cambien.
+    useEffect(() => {
+        localStorage.setItem("monedes", JSON.stringify(monedes));
+    }, [monedes]);
+
+
     const tipusMoneda : TipoMonedaModel[] = [
         { nom: "Moneda", valor: 1 + millores.puig1Mejora},
         { nom: "Duplicada", valor: 2 },
@@ -47,7 +55,7 @@ function Joc() {
             <p>{monedes}</p>
             {
                 tipusMoneda.map((moneda) => (
-                    <Moneda nom={moneda.nom} valor={moneda.valor} click={() => (
+                    <Moneda key={moneda.nom} nom={moneda.nom} valor={moneda.valor} click={() => (
                         setMonedes(monedes + moneda.valor)
                     )} />
                 ))
